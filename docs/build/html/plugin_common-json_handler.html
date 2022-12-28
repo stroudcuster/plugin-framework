@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>plugin-framework plugin_common.json_handler module &#8212; plugin-framework 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">plugin-framework plugin_common.json_handler module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="plugin-framework-plugin-common-json-handler-module">
+<span id="plugin-common-json-handler"></span><h1>plugin-framework plugin_common.json_handler module<a class="headerlink" href="#plugin-framework-plugin-common-json-handler-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-plugin_common.json_handler"></span><dl class="py class">
+<dt class="sig sig-object py" id="plugin_common.json_handler.PluginSpecJSONEncoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plugin_common.json_handler.</span></span><span class="sig-name descname"><span class="pre">PluginSpecJSONEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipkeys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ensure_ascii</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_circular</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugin_common.json_handler.PluginSpecJSONEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">JSONEncoder</span></code></p>
+<p>Implements a custom json.JSONEncoder to encode instances of PluginSpec, PluginMenu and PluginMenuItem instances</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_common.json_handler.PluginSpecJSONEncoder.default">
+<span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugin_common.json_handler.PluginSpecJSONEncoder.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is invoked to handle data types that can’t be handled by the standard JSONEncoder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin_common.json_handler.plugin_object_hook">
+<span class="sig-prename descclassname"><span class="pre">plugin_common.json_handler.</span></span><span class="sig-name descname"><span class="pre">plugin_object_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">PluginSpec</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginMenu" title="plugin_common.plugin_specs.PluginMenu"><span class="pre">PluginMenu</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginMenuItem" title="plugin_common.plugin_specs.PluginMenuItem"><span class="pre">PluginMenuItem</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plugin_common.json_handler.plugin_object_hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>A custom object hook function to handle the decoding of JSON representations of ConfigInfo, ImportSpecs and
+ExportSpecs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – a dict containing JSON names and values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of the appropriate class (e.g. ConfigInfo, ImportSpecs, etc)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[dict, model.PluginSpec, model.PluginMenu, model.PluginMenuItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin_common.json_handler.retrieve_plugins">
+<span class="sig-prename descclassname"><span class="pre">plugin_common.json_handler.</span></span><span class="sig-name descname"><span class="pre">retrieve_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">plugin_common.plugin_specs.PluginSpec</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plugin_common.json_handler.retrieve_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize the PluginSpec objects encoded in JSON file in the plugins folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin_path</strong> – a Path object pointing to the folder containing the PluginSpec JSON files</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pathlib.Path</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of de-serialized PluginSpec objects</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[model.PluginMenu]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plugin_common.json_handler.save_plugins">
+<span class="sig-prename descclassname"><span class="pre">plugin_common.json_handler.</span></span><span class="sig-name descname"><span class="pre">save_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">plugin_common.plugin_specs.PluginSpec</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugin_common.json_handler.save_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize a list of PluginSpec instances to JSON files.  The file names are based on the PluginSpec.name and author_name properties</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugins</strong> (<em>list</em><em>[</em><em>plugin_manager.model.plugin.PluginSpec</em><em>]</em>) – a list of PluginSpec objects</p></li>
+<li><p><strong>plugin_path</strong> (<em>pathlib.Path</em>) – a Path object pointing to the plugin folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">plugin-framework plugin_common.json_handler module</a><ul>
+<li><a class="reference internal" href="#plugin_common.json_handler.PluginSpecJSONEncoder"><code class="docutils literal notranslate"><span class="pre">PluginSpecJSONEncoder</span></code></a><ul>
+<li><a class="reference internal" href="#plugin_common.json_handler.PluginSpecJSONEncoder.default"><code class="docutils literal notranslate"><span class="pre">PluginSpecJSONEncoder.default()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plugin_common.json_handler.plugin_object_hook"><code class="docutils literal notranslate"><span class="pre">plugin_object_hook()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_common.json_handler.retrieve_plugins"><code class="docutils literal notranslate"><span class="pre">retrieve_plugins()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_common.json_handler.save_plugins"><code class="docutils literal notranslate"><span class="pre">save_plugins()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/plugin_common-json_handler.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">plugin-framework plugin_common.json_handler module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Stroud Custer.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

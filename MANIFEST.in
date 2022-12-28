@@ -1,0 +1,3 @@
+include docs/source/*.rst
+include plugin_source/json/*.json
+

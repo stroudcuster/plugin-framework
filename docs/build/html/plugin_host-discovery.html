@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>plugin-framework plugin_host-discovery module &#8212; plugin-framework 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">plugin-framework plugin_host-discovery module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="plugin-framework-plugin-host-discovery-module">
+<span id="plugin-host-discovery"></span><h1>plugin-framework plugin_host-discovery module<a class="headerlink" href="#plugin-framework-plugin-host-discovery-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-plugin_host.discovery"></span><dl class="py class">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plugin_host.discovery.</span></span><span class="sig-name descname"><span class="pre">IntegrationManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menu_parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class manages the discovery, installation and update of plugin functionality that is packaged according
+to the formats and protocols support by this framework.  It is expected that this class with be fronted by
+a class or classes providing a GUI or web service giving access to this class’ functionality</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.create_menus">
+<span class="sig-name descname"><span class="pre">create_menus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean_menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_found_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_menu_item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.create_menus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rebuild the menus for currently installed PluginSpec instances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>clean_menu</strong> – a callback routine the will remove the plugin menu item from the menu parent in preparation for rebuilding the menu</p></li>
+<li><p><strong>not_found_action</strong> (<em>Callable</em>) – the callback to be used when an entry point can not be found</p></li>
+<li><p><strong>selection_action</strong> (<em>Callable</em>) – the callback to be used for Person, date range and DataPointType selections</p></li>
+<li><p><strong>add_menu_item</strong> (<em>Callable</em>) – the callback to be used to add menu items to the menu</p></li>
+<li><p><strong>add_menu</strong> (<em>Callable</em>) – the callback to be used to associate the menu created with a parent menu</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.discover_entrypoints">
+<span class="sig-name descname"><span class="pre">discover_entrypoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">importlib.metadata.EntryPoint</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.discover_entrypoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method uses the importlib.metadata library to discovery entry points in installed packages.  The entry
+points retrieved have a common group name which corresponds to the name of a plugin as recorded in the name        property of plugin_common.plugin_specs.PluginSpec</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a dict keyed by the root package name of the plugin source, containing dicts keyed by entrypoint name and having importlib.metadata.EntryPoint values</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, dict[str, importlib.metadata.EntryPoint]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.get_discovered_plugins">
+<span class="sig-name descname"><span class="pre">get_discovered_plugins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">plugin_common.plugin_specs.PluginSpec</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">plugin_common.plugin_specs.PluginSpec</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.get_discovered_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the PlugSpec’s, versions and help doc URI for packages collected by the discover_entrypoints
+method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a tuple containing maps of updated PluginSpec instances, new (uninstalled) PluginSpec instances and a map of help doc URI</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[plugin_specs_map_type, plugin_spec_map_type, dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.get_installed_plugins">
+<span class="sig-name descname"><span class="pre">get_installed_plugins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec"><span class="pre">plugin_common.plugin_specs.PluginSpec</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.get_installed_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creats a dict keyed by PluginSpec.name containing values of PluginSpec.  These instances are instantiated
+from JSON serialized PluginSpec files in the host application’s json directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a map of PluginSpecs installed in the host application</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, <a class="reference internal" href="plugin_common-plugin_specs.html#plugin_common.plugin_specs.PluginSpec" title="plugin_common.plugin_specs.PluginSpec">plugin_common.plugin_specs.PluginSpec</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.install_plugin">
+<span class="sig-name descname"><span class="pre">install_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.install_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Installs a new JSON PluginSpec file into the host app’s PluginSpec directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – the name of the PluginSpec to be installed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.uninstall_plugin">
+<span class="sig-name descname"><span class="pre">uninstall_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.uninstall_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uninstalls a JSON PluginSpec from the host app’s PluginSpec directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – the name of the PluginSpec to be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plugin_host.discovery.IntegrationManager.update_plugin">
+<span class="sig-name descname"><span class="pre">update_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#plugin_host.discovery.IntegrationManager.update_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces a currently installed JSON PluginSpec file with one of a more recent version</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – the PluginSpec.name property</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">plugin-framework plugin_host-discovery module</a><ul>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager"><code class="docutils literal notranslate"><span class="pre">IntegrationManager</span></code></a><ul>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.create_menus"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.create_menus()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.discover_entrypoints"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.discover_entrypoints()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.get_discovered_plugins"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.get_discovered_plugins()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.get_installed_plugins"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.get_installed_plugins()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.install_plugin"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.install_plugin()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.uninstall_plugin"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.uninstall_plugin()</span></code></a></li>
+<li><a class="reference internal" href="#plugin_host.discovery.IntegrationManager.update_plugin"><code class="docutils literal notranslate"><span class="pre">IntegrationManager.update_plugin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/plugin_host-discovery.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">plugin-framework plugin_host-discovery module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Stroud Custer.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

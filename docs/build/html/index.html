@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Welcome to plugin-framework’s documentation! &#8212; plugin-framework 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The MIT License (MIT)" href="LICENSE.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="LICENSE.html" title="The MIT License (MIT)"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to plugin-framework’s documentation!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-plugin-framework-s-documentation">
+<h1>Welcome to plugin-framework’s documentation!<a class="headerlink" href="#welcome-to-plugin-framework-s-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugin_common-json_handler.html">plugin-framework plugin_common.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_common-plugin_specs.html">plugin-framework plugin_common.plugin_specs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_host-discovery.html">plugin-framework plugin_host-discovery module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin_source-interface.html">plugin-framework plugin_source-interface module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="plugin-framework">
+<h2>Plugin Framework<a class="headerlink" href="#plugin-framework" title="Permalink to this heading">¶</a></h2>
+<p>The intent of this project is to provide an interface between primary Python applications and plugins that extend the functionality
+of the primary application.  It addresses these issues that arise when attempting in implement an ability to accept
+plugin extension in an application:</p>
+<ul class="simple">
+<li><p>How to integrate the primary application and the plugin package without resorting to automated or user run post-install scripts</p></li>
+<li><p>How to make the plugin packages entry points known the primary application</p></li>
+<li><p>In the case of desktop GUI applications, how to integrate access to the plugin functionality into the GUI menu structure</p></li>
+</ul>
+<p>The central piece of this framework is a hierarchy of classes that contains the following information about the plugin package:</p>
+<ul class="simple">
+<li><p>Descriptive information; name, description, author, email address, version</p></li>
+<li><p>A menu/menu item hierarchy that provides the information necessary to build a GUI menu structure and establish the entry points for the various plugin features</p></li>
+</ul>
+<p>Instances of this class hierarchy (PluginSpec/PluginMenu/PluginMenuItem) are serialized to JSON format files which are discovered and
+digested by the primary application. In this framework, the primary application is referred to as the plugin host and the extension package as the plugin source.
+The codebase consists of three packages;</p>
+<ul class="simple">
+<li><p>plugin_common which contains the object model, JSON encode/decode function and some utilities that are employed in the process of dynamically integrating the plugin host and source.</p></li>
+<li><p>plugin_source which provides entry points that implement the source side of the discovery process</p></li>
+<li><p>plugin_host which provides discovery  plugin_source package entry points and installation and update of the PluginSpec JSON files</p></li>
+</ul>
+<p>The discovery process uses the importlib_metadata library functions to discovery the plugin entry points declared in the plugin package’s
+pyproject.toml file.  See the example file in the project’s root directory.  Entry points specified in this way can not accept any arguments,
+which makes that unsuitable for implementing the plugin’s core functionality, but does not prevent them from providing information about the plugin
+packages functionality.  Currently the following entry points are provided by the plugin_source.interface.</p>
+<ul class="simple">
+<li><p>get_help_docs_uri - returns a uri pointing to the plugin package’s HTML format help documentation</p></li>
+<li><p>get_version - returns the current plugin package version, drawn from the project’s pyproject.toml file</p></li>
+<li><p>get_plugin_spec - returns the PluginSpec/PluginMenu/PluginMenuItem hierarchy for the plugin package.</p></li>
+</ul>
+<p>On the plugin host side of things, the installation of a discovered plugin is implemented by serializing the PluginSpec hierarchy
+to a JSON file and saving it in a directory known the host application.  Each time the host application is started,
+the plugin_host/discovery model repeats the discovery process, and retrieves the help doc uri and version for each package
+discovered.  It then retrieves the PluginSpec objects for each plugin that is not currently installed, or has a more recent
+version than the installed plugin.  At this point you can allow the user to select which plugins should be installed, updated
+or removed from the installed list.  The module also provides methods to carry out these actions.</p>
+<p>Each PluginMenu object specifies a menu title and a module path that will provide the functionality for the menu’s items.
+Each PluginMenuItem object specifies a menu item title and a function entry point within the module specified in the parent
+PluginMenu.  In the current state of the framework, these function cannot be bound functions, as I could find no simple
+way to provide the host application access to objects instantiated by the plugin source package.  If necessary, an entry
+point that returns the required object or class could be added to the plugin_source.interface module.  It is up to the
+host application to establish on or more interfaces to be applied to the menu item entry points.  There is currently
+no provision in the PluginSpec hierarchy for specifying this sort of information, but a de facto standard to be implemented
+by menu item entry points could be established by the host application authors.</p>
+<p>I have a related project called Plugin Manager that provides a tree-structured GUI to allow developers to create, maintain
+and serialize PluginSpec objects.</p>
+<p>The plugin_host.discovery module provides a create_menus method that invokes a corresponding method in each of the menus
+declared for each installed plugin.  These methods accept two callback routines; one to create a GUI menu object and one
+to attach a GUI menu item to a parent menu.  This dependency injection allows the framework to be easily adapted to
+different GUI frameworks.</p>
+<p>This framework is still very much a work in progress.  I developed it so that I could add plugin capability to my
+Biometrics Tracker application.  One of the advantage of implementing ancillary functions as plugin is that this
+can reduce the number of dependencies in the host application, as opposed to implementing all of the functionality
+directly in the host application.</p>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to plugin-framework’s documentation!</a><ul>
+<li><a class="reference internal" href="#plugin-framework">Plugin Framework</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LICENSE.html"
+                          title="next chapter">The MIT License (MIT)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="LICENSE.html" title="The MIT License (MIT)"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">plugin-framework 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to plugin-framework’s documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Stroud Custer.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

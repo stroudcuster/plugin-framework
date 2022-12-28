@@ -1,0 +1,34 @@
+[project]
+name = "plugin_framework"
+version = "0.0.1"
+description = "This project is a test case for discoverable entrypoints"
+requires-python = ">=3.8"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    'tomli >= 2; python_version < "3.11"',
+ ]
+keywords = [
+    'plugin'
+, ]
+
+[project.entry-points."biometrics.plugin"]
+help_docs_uri = "plugin_source.interface:get_help_docs_uri"
+version = "plugin_source.interface:get_version"
+plugin_specs = "plugin_source.interface:get_plugin_specs"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# ...
+# By default, include-package-data is true in pyproject.toml, so you do
+# NOT have to specify this line.
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]

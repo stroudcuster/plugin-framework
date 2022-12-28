@@ -1,0 +1,4 @@
+[biometrics.plugin]
+help_docs_uri = plugin_source.interface:get_help_docs_uri
+plugin_specs = plugin_source.interface:get_plugin_specs
+version = plugin_source.interface:get_version
